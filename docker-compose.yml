@@ -1,0 +1,91 @@
+services:
+  # ------------------------------------------------------------
+  # 1. DATABASE (PostgreSQL 16 LTS)
+  # ------------------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: alexanderbalbe_db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: alexanderbalbe_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    # Healthcheck is cruciaal voor de backup-container
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d alexanderbalbe_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ------------------------------------------------------------
+  # 2. BACKUP SERVICE (LTS Compatibel)
+  # ------------------------------------------------------------
+  db-backup:
+    image: prodrigestivill/postgres-backup-local:16
+    restart: always
+    user: postgres:postgres
+    volumes:
+      - ./backups:/backups
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=alexanderbalbe_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - SCHEDULE=@daily # Elke nacht om 00:00
+      - BACKUP_KEEP_DAYS=7 # Bewaar backups 7 dagen
+
+  # ------------------------------------------------------------
+  # 3. BACKEND API (NestJS - Node 24 LTS)
+  # ------------------------------------------------------------
+  api:
+    build:
+      context: ./api
+      target: development
+      # Zorg dat je Dockerfile ook FROM node:24-alpine gebruikt!
+    image: my-api:dev
+    ports:
+      - "3001:3000" # Host:3001 -> Container:3000
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Interne Docker netwerk URL voor DB connectie
+      - DATABASE_URL=postgresql://user:password@db:5432/alexanderbalbe_db
+      # CORS setup: Frontend draait op poort 3000
+      - FRONTEND_URL=http://localhost:3000
+
+  # ------------------------------------------------------------
+  # 4. FRONTEND (TanStack Start - Node 24 LTS)
+  # ------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+      # Zorg dat je Dockerfile ook FROM node:24-alpine gebruikt!
+    image: my-frontend:dev
+    ports:
+      - "3000:3000" # Host:3000 -> Container:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.output # Belangrijk voor TanStack Start (Vinxi) caching
+    depends_on:
+      - api
+    environment:
+      # Browser (Client) gaat naar localhost:3001
+      - VITE_API_URL=http://localhost:3001
+      # SSR (Server) gaat direct naar de container 'api' op poort 3000
+      # Dit is nodig omdat de server 'localhost' niet kent als jouw pc.
+      - SERVER_API_URL=http://api:3000
+
+volumes:
+  pgdata:
