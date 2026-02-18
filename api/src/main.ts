@@ -6,8 +6,8 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      'http://localhost:5173', // Local Vite Dev Server
-      'http://127.0.0.1:5173', // Alternate Local Address
+      'http://localhost:3000', // Local Vite Dev Server
+      'http://127.0.0.1:3000', // Alternate Local Address
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
