@@ -24,8 +24,8 @@ async function seed() {
     const navQuery = `INSERT INTO navigation_items (label, path) VALUES ($1, $2) RETURNING id`;
 
     await client.query(navQuery, ['Home', '/']);
-    await client.query(navQuery, ['Projecten', '/projects']);
-    await client.query(navQuery, ['Over Mij', '/about-me']);
+    await client.query(navQuery, ['Projecten', '/projecten']);
+    await client.query(navQuery, ['Over Mij', '/over-mij']);
     await client.query(navQuery, ['Contact', '/contact']);
 
     // ------------------------------------------
