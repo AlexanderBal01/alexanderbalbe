@@ -54,6 +54,7 @@ services:
     volumes:
       - ./api:/app
       - /app/node_modules
+    command: sh -c "npm install && npm run start:dev"
     depends_on:
       db:
         condition: service_healthy
@@ -61,7 +62,7 @@ services:
       # Interne Docker netwerk URL voor DB connectie
       - DATABASE_URL=postgresql://user:password@db:5432/alexanderbalbe_db
       # CORS setup: Frontend draait op poort 3000
-      - FRONTEND_URL=http://localhost:3000
+      - FRONTEND_URL=http://192.168.1.25:3000
 
   # ------------------------------------------------------------
   # 4. FRONTEND (TanStack Start - Node 24 LTS)
@@ -78,11 +79,12 @@ services:
       - ./frontend:/app
       - /app/node_modules
       - /app/.output # Belangrijk voor TanStack Start (Vinxi) caching
+    command: sh -c "npm install && npm run dev"
     depends_on:
       - api
     environment:
       # Browser (Client) gaat naar localhost:3001
-      - VITE_API_URL=http://localhost:3001
+      - VITE_API_URL=http://192.168.1.25:3001
       # SSR (Server) gaat direct naar de container 'api' op poort 3000
       # Dit is nodig omdat de server 'localhost' niet kent als jouw pc.
       - SERVER_API_URL=http://api:3000
