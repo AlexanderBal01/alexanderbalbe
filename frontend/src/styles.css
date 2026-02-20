@@ -27,7 +27,7 @@
 }
 
 body {
-  @apply m-6 lg:mx-25;
+  @apply m-6 lg:mx-25 flex flex-col gap-y-6;
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
