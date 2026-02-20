@@ -16,6 +16,7 @@ import type { QueryClient } from "@tanstack/react-query";
 import { Suspense } from "react";
 import NavbarSuspense from "@/components/common/navbar/NavbarSuspense";
 import Navbar from "@/components/common/navbar/Navbar";
+import Footer from "@/components/common/footer/Footer";
 
 interface MyRouterContext {
   queryClient: QueryClient;
@@ -57,24 +58,27 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <TanStackQueryProvider>
-          <Suspense fallback={<NavbarSuspense />}>
-            <Navbar />
-          </Suspense>
-          {children}
-          <TanStackDevtools
-            config={{
-              position: "bottom-right",
-            }}
-            plugins={[
-              {
-                name: "Tanstack Router",
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-              TanStackQueryDevtools,
-            ]}
-          />
-        </TanStackQueryProvider>
+        <div className="max-w-7xl mx-auto min-h-screen flex flex-col gap-y-6 my-6">
+          <TanStackQueryProvider>
+            <Suspense fallback={<NavbarSuspense />}>
+              <Navbar />
+            </Suspense>
+            {children}
+            <Footer />
+            <TanStackDevtools
+              config={{
+                position: "bottom-right",
+              }}
+              plugins={[
+                {
+                  name: "Tanstack Router",
+                  render: <TanStackRouterDevtoolsPanel />,
+                },
+                TanStackQueryDevtools,
+              ]}
+            />
+          </TanStackQueryProvider>
+        </div>
         <Scripts />
       </body>
     </html>
