@@ -14,8 +14,8 @@ import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
 import { Suspense } from "react";
-import NavbarSuspense from "@/components/common/Navbar/NavbarSuspense";
-import Navbar from "@/components/common/Navbar/Navbar";
+import NavbarSuspense from "@/components/common/navbar/NavbarSuspense";
+import Navbar from "@/components/common/navbar/Navbar";
 
 interface MyRouterContext {
   queryClient: QueryClient;
