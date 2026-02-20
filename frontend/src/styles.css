@@ -1,11 +1,9 @@
 @import "tailwindcss";
 
-:root {
-  --color-obsidian: #0a0b10;
-  --color-ice-blue: #9fd4ff;
-}
-
 @theme {
+  --color-iceblue: oklch(0.8483 0.0816 243.39);
+  --color-obsidian: oklch(0.1509 0.0109 276.17);
+
   --animate-slide-in-from-right: slide-in-from-right 500ms ease;
   --animate-slide-out-to-right: slide-out-to-right 500ms ease;
 
