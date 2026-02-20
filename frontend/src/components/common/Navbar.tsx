@@ -53,7 +53,7 @@ const Navbar = () => {
                       to={item.path}
                       activeOptions={{ exact: item.path === "/" }}
                       onMouseEnter={() => setHoveredPath(item.path)}
-                      className={`relative block capitalize px-6 py-2 text-sm text-(--color-obsidian) font-medium`}
+                      className={`relative block capitalize px-6 py-2 text-sm text-obsidian font-medium`}
                       activeProps={{
                         className: `${activePath === item.path && "font-black"}`,
                       }}
@@ -62,7 +62,7 @@ const Navbar = () => {
                       {showPill && (
                         <motion.div
                           layoutId="radix-nav-pill"
-                          className="absolute inset-0 bg-(--color-ice-blue) rounded-full -z-10"
+                          className="absolute inset-0 bg-iceblue rounded-full -z-10"
                           transition={{
                             type: "spring",
                             stiffness: 400,
@@ -89,7 +89,7 @@ const Navbar = () => {
         <Dialog.Root open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <Dialog.Trigger asChild>
             <button
-              className="rounded-full bg-white/25 p-2 text-(--color-ice-blue) backdrop-blur-md"
+              className="rounded-full bg-white/25 p-2 text-iceblue backdrop-blur-md"
               aria-label="Open menu"
             >
               <HamburgerMenuIcon className="h-6 w-6" />
@@ -101,7 +101,7 @@ const Navbar = () => {
             <Dialog.Content className="data-[state=open]:animate-slide-in-from-right data-[state=closed]:animate-slide-out-to-right fixed top-0 right-0 z-50 flex h-full w-full flex-col bg-white/25 shadow-lg backdrop-blur-md">
               <div className="flex items-center justify-end p-5">
                 <VisuallyHidden.Root>
-                  <Dialog.Title className="text-lg font-bold text-(--color-ice-blue)">
+                  <Dialog.Title className="text-lg font-bold text-iceblue">
                     Menu
                   </Dialog.Title>
                 </VisuallyHidden.Root>
@@ -123,7 +123,7 @@ const Navbar = () => {
 
                 <Dialog.Close asChild>
                   <button
-                    className="rounded-full p-2 text-(--color-ice-blue) transition-colors hover:bg-white/10"
+                    className="rounded-full p-2 text-iceblue transition-colors hover:bg-white/10"
                     aria-label="Close menu"
                   >
                     <Cross1Icon className="h-6 w-6" />
@@ -133,12 +133,9 @@ const Navbar = () => {
 
               <div className="flex-1 overflow-y-auto px-5">
                 {data.map((item) => (
-                  <div className="border-b border-(--color-ice-blue) py-5">
+                  <div className="border-b border-iceblue py-5">
                     <Dialog.Close asChild>
-                      <Link
-                        to={item.path}
-                        className="block text-(--color-ice-blue)"
-                      >
+                      <Link to={item.path} className="block text-iceblue">
                         {item.label}
                       </Link>
                     </Dialog.Close>
