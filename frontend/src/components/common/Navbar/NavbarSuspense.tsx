@@ -38,7 +38,7 @@ const NavbarSuspense = () => {
         <Dialog.Root open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <Dialog.Trigger asChild>
             <button
-              className="rounded-full bg-white/25 p-2 text-(--color-obsidian) backdrop-blur-md"
+              className="rounded-full bg-white/25 p-2 text-obsidian backdrop-blur-md"
               aria-label="Open menu"
             >
               <HamburgerMenuIcon className="h-6 w-6" />
@@ -50,7 +50,7 @@ const NavbarSuspense = () => {
             <Dialog.Content className="data-[state=open]:animate-slide-in-from-right data-[state=closed]:animate-slide-out-to-right fixed top-0 right-0 z-50 flex h-full w-full flex-col bg-white/25 shadow-lg backdrop-blur-md">
               <div className="flex items-center justify-end p-5">
                 <VisuallyHidden.Root>
-                  <Dialog.Title className="text-lg font-bold text-(--color-obsidian)">
+                  <Dialog.Title className="text-lg font-bold text-obsidian">
                     Menu
                   </Dialog.Title>
                 </VisuallyHidden.Root>
@@ -70,7 +70,7 @@ const NavbarSuspense = () => {
 
                 <Dialog.Close asChild>
                   <button
-                    className="rounded-full p-2 text-(--color-obsidian) transition-colors hover:bg-white/10"
+                    className="rounded-full p-2 text-obsidian transition-colors hover:bg-white/10"
                     aria-label="Close menu"
                   >
                     <Cross1Icon className="h-6 w-6" />
