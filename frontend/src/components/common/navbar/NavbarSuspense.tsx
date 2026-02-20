@@ -13,8 +13,8 @@ const NavbarSuspense = () => {
   return (
     <>
       {/* Desktop Navigation */}
-      <NavigationMenu.Root className="center relative z-10 hidden h-10 lg:grid lg:grid-cols-3">
-        <NavigationMenu.Sub className="h-10 list-none content-center place-items-center grid">
+      <NavigationMenu.Root className="mt-6 center relative z-10 hidden h-10 lg:grid lg:grid-cols-5">
+        <NavigationMenu.Sub className="h-10 list-none w-full grid">
           <img
             src={"/logo.svg"}
             alt="logo"
@@ -24,8 +24,13 @@ const NavbarSuspense = () => {
           />
         </NavigationMenu.Sub>
 
-        <NavigationMenu.Sub className="h-10 list-none grid col-2 animate-pulse w-full">
-          <NavigationMenu.List className="group flex list-none items-center justify-center rounded-full border border-gray-200 bg-gray-200 shadow-sm h-full w-"></NavigationMenu.List>
+        <NavigationMenu.Sub className="h-10 list-none grid col-span-3 animate-pulse justify-center">
+          <NavigationMenu.List className="group flex list-none items-center  rounded-full border border-gray-200 bg-gray-200 shadow-sm h-full w-fit">
+            <li className="px-6 py-2 text-transparent">home</li>
+            <li className="px-6 py-2 text-transparent">projecten</li>
+            <li className="px-6 py-2 text-transparent">over mij</li>
+            <li className="px-6 py-2 text-transparent">contact</li>
+          </NavigationMenu.List>
         </NavigationMenu.Sub>
       </NavigationMenu.Root>
 

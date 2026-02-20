@@ -23,8 +23,8 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Navigation */}
-      <NavigationMenu.Root className="relative z-10 hidden h-10 lg:grid lg:grid-cols-5">
-        <NavigationMenu.Sub className="h-10 list-none place-items-center grid">
+      <NavigationMenu.Root className="relative z-10 hidden h-10 lg:grid lg:grid-cols-5 place-items-center">
+        <NavigationMenu.Sub className="h-10 list-none grid w-full">
           <img
             src={"/logo.svg"}
             alt="logo"
