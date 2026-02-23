@@ -81,7 +81,7 @@ const Navbar = () => {
       </NavigationMenu.Root>
 
       {/* Mobile Navigation */}
-      <div className="relative z-20 flex items-center justify-between px-6 lg:hidden">
+      <div className="relative z-20 flex items-center justify-between lg:hidden">
         <Link to="/" className="flex items-center gap-x-2.5">
           <img src={"/logo.svg"} alt="logo" width={50} height={50} />
         </Link>
