@@ -56,7 +56,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="max-w-7xl mx-auto min-h-dvh flex flex-col gap-y-6 py-6 px-6">
+        <div className="max-w-7xl mx-auto min-h-dvh flex flex-col gap-y-6 py-6">
           <TanStackQueryProvider>
             <Suspense fallback={<NavbarSuspense />}>
               <Navbar />
