@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Navigation */}
-      <NavigationMenu.Root className="relative z-10 hidden h-10 lg:grid lg:grid-cols-5 place-items-center">
+      <NavigationMenu.Root className="relative z-10 hidden h-10 lg:grid lg:grid-cols-5 place-items-center px-6">
         <NavigationMenu.Sub className="h-10 list-none grid w-full">
           <img
             src={"/logo.svg"}
@@ -81,7 +81,7 @@ const Navbar = () => {
       </NavigationMenu.Root>
 
       {/* Mobile Navigation */}
-      <div className="relative z-20 flex items-center justify-between lg:hidden">
+      <div className="relative z-20 flex items-center justify-between lg:hidden px-6">
         <Link to="/" className="flex items-center gap-x-2.5">
           <img src={"/logo.svg"} alt="logo" width={50} height={50} />
         </Link>
