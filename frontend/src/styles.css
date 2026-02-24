@@ -41,6 +41,15 @@ code {
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background-color: oklch(0.8483 0.0816 243.39);
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
 :focus-visible {
   outline: none !important;
 }

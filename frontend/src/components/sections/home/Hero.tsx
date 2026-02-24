@@ -33,7 +33,7 @@ const Hero = () => {
           </div>
           <div className="lg:col-span-7">
             <div className="relative group">
-              <div className="absolute -inset-1 bg-linear-to-r from-primary to-blue-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+              <div className="absolute -inset-1 bg-linear-to-r from-primary to-iceblue rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative bg-terminal-body rounded-xl border border-obsidian shadow-2xl overflow-hidden font-mono">
                 <div className="bg-terminal-header px-4 py-3 border-b border-obsidian flex items-center justify-between">
                   <div className="flex gap-2">
