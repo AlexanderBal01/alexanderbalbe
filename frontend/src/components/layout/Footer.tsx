@@ -4,7 +4,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="mb-12 flex">
+    <footer className="mb-12 flex px-6">
       <div className="w-full">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-col items-center md:items-start gap-4">
