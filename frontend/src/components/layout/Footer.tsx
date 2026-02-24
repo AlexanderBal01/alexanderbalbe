@@ -23,19 +23,19 @@ const Footer = () => {
           </div>
           <div className="flex gap-6">
             <a
-              className="w-10 h-10 rounded-full flex items-center justify-center bg-iceblue text-obsidian hover:text-white transition-all"
+              className="w-10 h-10 rounded-full flex items-center justify-center bg-iceblue text-obsidian hover:text-white text-center font-bold shadow-lg shadow-iceblue/20 transition-all transform hover:-translate-y-1"
               href="mailto:balalexander73@gmail.com"
             >
               <FaEnvelope />
             </a>
             <a
-              className="w-10 h-10 rounded-full flex items-center justify-center bg-iceblue text-obsidian hover:text-white transition-all"
+              className="w-10 h-10 rounded-full flex items-center justify-center bg-iceblue text-obsidian hover:text-white text-center font-bold shadow-lg shadow-iceblue/20 transition-all transform hover:-translate-y-1"
               href="https://github.com/AlexanderBal01"
             >
               <FaGithub />
             </a>
             <a
-              className="w-10 h-10 rounded-full flex items-center justify-center bg-iceblue text-obsidian hover:text-white transition-all"
+              className="w-10 h-10 rounded-full flex items-center justify-center bg-iceblue text-obsidian hover:text-white text-center font-bold shadow-lg shadow-iceblue/20 transition-all transform hover:-translate-y-1"
               href="https://www.linkedin.com/in/alexander-bal/"
             >
               <FaLinkedinIn />
