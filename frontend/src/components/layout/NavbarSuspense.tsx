@@ -13,7 +13,7 @@ const NavbarSuspense = () => {
   return (
     <>
       {/* Desktop Navigation */}
-      <NavigationMenu.Root className="mt-6 center relative z-10 hidden h-10 lg:grid lg:grid-cols-5">
+      <NavigationMenu.Root className="mt-6 center relative z-10 hidden h-10 lg:grid lg:grid-cols-5 px-6">
         <NavigationMenu.Sub className="h-10 list-none w-full grid">
           <img
             src={"/logo.svg"}
@@ -35,7 +35,7 @@ const NavbarSuspense = () => {
       </NavigationMenu.Root>
 
       {/* Mobile Navigation */}
-      <div className="relative z-20 flex items-center justify-between px-5 py-3 lg:hidden">
+      <div className="relative z-20 flex items-center justify-between px-6 py-6 lg:hidden">
         <div className="flex items-center gap-x-2.5">
           <img src={"/logo.svg"} alt="logo" width={50} height={50} />
         </div>
