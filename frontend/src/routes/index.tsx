@@ -8,6 +8,7 @@ function App() {
     <div className="flex grow flex-col gap-6">
       <HomeHeroSection />
       <HomeTechStackSection />
+      {/* TODO add featured projects section.*/}
     </div>
   );
 }

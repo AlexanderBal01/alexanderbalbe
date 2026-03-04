@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden px-6">
+    <section className="mx-auto max-w-7xl w-full relative overflow-hidden px-6">
       <div className="mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 flex flex-col gap-6">

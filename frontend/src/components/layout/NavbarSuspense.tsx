@@ -13,7 +13,7 @@ const NavbarSuspense = () => {
   return (
     <>
       {/* Desktop Navigation */}
-      <NavigationMenu.Root className="mt-6 center relative z-10 hidden h-10 lg:grid lg:grid-cols-5 px-6">
+      <NavigationMenu.Root className="mx-auto max-w-7xl w-full mt-6 center relative z-10 hidden h-10 lg:grid lg:grid-cols-5 px-6">
         <NavigationMenu.Sub className="h-10 list-none w-full grid">
           <img
             src={"/logo.svg"}
