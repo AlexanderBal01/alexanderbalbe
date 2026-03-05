@@ -1,4 +1,5 @@
-import { Button, Card } from "@/components/ui";
+import { Button, Card, ProjectCard } from "@/components/ui";
+import { useFeaturedProjects } from "@/hooks/useProjects";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   BiLogoDocker,
@@ -8,13 +9,16 @@ import {
   BiLogoTailwindCss,
   BiLogoTypescript,
 } from "react-icons/bi";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRightLong, FaEnvelope, FaPhone } from "react-icons/fa6";
 
 export const Route = createFileRoute("/")({ component: App });
 
 function App() {
+  const { data } = useFeaturedProjects();
+  console.log(data);
+
   return (
-    <div className="flex grow flex-col gap-6">
+    <div className="flex grow flex-col gap-18 mb-2">
       <section className="mx-auto max-w-7xl w-full relative overflow-hidden px-6">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 flex flex-col gap-6">
@@ -191,70 +195,64 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="py-12" id="work">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-            <div className="space-y-4">
-              <h2 className="text-4xl font-black text-obsidian tracking-tight">
-                Favoriete projecten
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 max-w-xl">
-                Een selectie van mijn Favoriete projecten, die ik al heb
-                gerealiseerd.
-              </p>
-            </div>
-            <Link
-              className="text-primary font-bold flex items-center gap-2 group"
-              to="/projecten"
-            >
-              Zie al mijn projecten
-              <span className="group-hover:translate-x-1 transition-transform">
-                <FaArrowRightLong />
-              </span>
-            </Link>
+      <section className="mx-auto max-w-7xl w-full relative overflow-hidden px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div className="space-y-4">
+            <h2 className="text-4xl font-black text-obsidian tracking-tight">
+              Favoriete projecten
+            </h2>
+            <p className="text-obsidian max-w-xl">
+              Een selectie van mijn Favoriete projecten, die ik al gerealiseerd
+              heb.
+            </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm transition-all hover:shadow-xl hover:-translate-y-2">
-              <div className="h-56 bg-slate-200 dark:bg-slate-800 relative overflow-hidden">
-                <img
-                  alt="App interface"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  data-alt="Mobile application interface showing task management and user profiles"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBRA173hf8-OXXsKmLNi7S0RERtZaOeOlunDlpxC9KhWkwKFVHpUy_1gwOjQMwXYBmHsvnrm2LR9A_A2tKaPlio5QPHcOKIur1tgq4X-YlB2aB_m_WBBUTWW3CkOaQ_jjH1UoWHiO5jbnloed_0zRecrzaIT4krWnB1g8H-pDiSaMKra0is2gJSESerPPCvVcNuxjw-C0g6fcQ1ylsOjiAZUYXMwFsbTTlAj5pTmm1F3pSnEZx8aNj4l6pkQMyGqr1JD-Os_nnyUlm"
-                />
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              </div>
-              <div className="p-8 space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-1 rounded">
-                    React Native
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded">
-                    Firebase
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                  TaskMaster Pro
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                  A cross-platform productivity app featuring collaborative task
-                  boards and smart push notifications.
-                </p>
-                <div className="flex gap-4 pt-2">
-                  <button className="text-slate-900 dark:text-white font-bold text-sm flex items-center gap-1 hover:text-primary transition-colors">
-                    <span className="material-symbols-outlined text-lg">
-                      link
-                    </span>{" "}
-                    Demo
-                  </button>
-                  <button className="text-slate-900 dark:text-white font-bold text-sm flex items-center gap-1 hover:text-primary transition-colors">
-                    <span className="material-symbols-outlined text-lg">
-                      code_blocks
-                    </span>{" "}
-                    GitHub
-                  </button>
-                </div>
-              </div>
+          <Link
+            className="text-primary font-bold flex items-center gap-2 group"
+            to="/projecten"
+          >
+            Zie al mijn projecten
+            <span className="group-hover:translate-x-1 transition-transform">
+              <FaArrowRightLong />
+            </span>
+          </Link>
+        </div>
+        <div className="grid md:grid-cols-2 md:gap-4 lg:grid-cols-3 gap-8">
+          {data.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl w-full relative overflow-hidden px-6">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="max-w-2xl mx-auto space-y-8 relative z-10">
+            <h2 className="text-4xl lg:text-5xl font-black text-obsidian tracking-tight leading-tight">
+              Samen een project starten? <br />
+              Let's{" "}
+              <span className="text-iceblue underline decoration-primary/30 underline-offset-8">
+                build it together
+              </span>
+              .
+            </h2>
+            <p className="text-lg text-obsidian/80 leading-relaxed">
+              Ik sta momenteel open voor nieuwe uitdagingen en creatieve
+              projecten. Heb je een vraag of wil je gewoon even kennismaken? Je
+              kunt me altijd een bericht sturen.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+              <a
+                className="bg-iceblue hover:bg-iceblue/90 text-white px-10 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
+                href="mailto:balalexander73@gmail.com?subject=Project%20verzoek%20"
+              >
+                <FaEnvelope />
+                Verstuur een Email
+              </a>
+              <a
+                className="bg-iceblue hover:bg-iceblue/90 text-white px-10 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-3"
+                href="tel:+32486385483"
+              >
+                <FaPhone />
+                Bel me op
+              </a>
             </div>
           </div>
         </div>
