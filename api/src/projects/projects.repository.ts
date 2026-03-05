@@ -9,10 +9,22 @@ export class ProjectsRepository {
   async findAll(): Promise<ProjectEntity[]> {
     const query = `
       SELECT * FROM projects 
-      ORDER BY is_featured DESC, created_at DESC
+      ORDER BY created_at DESC
     `;
 
     // 2. We geven <ProjectEntity> mee aan de query
+    const result = await this.pool.query<ProjectEntity>(query);
+
+    return result.rows;
+  }
+
+  async findFeatured(): Promise<ProjectEntity[]> {
+    const query = `
+      SELECT * FROM projects 
+      WHERE is_featured = true
+      ORDER BY created_at DESC
+    `;
+
     const result = await this.pool.query<ProjectEntity>(query);
 
     return result.rows;

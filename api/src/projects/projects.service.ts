@@ -8,4 +8,8 @@ export class ProjectsService {
   async getAllProjects() {
     return await this.projectsRepository.findAll();
   }
+
+  async getAllFeaturedProjects() {
+    return await this.projectsRepository.findFeatured();
+  }
 }

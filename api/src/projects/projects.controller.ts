@@ -9,4 +9,9 @@ export class ProjectsController {
   async getAll() {
     return await this.projectsService.getAllProjects();
   }
+
+  @Get('featured')
+  async getAllFeaturedProjects() {
+    return await this.projectsService.getAllFeaturedProjects();
+  }
 }
