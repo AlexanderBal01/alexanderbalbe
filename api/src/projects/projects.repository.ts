@@ -22,7 +22,6 @@ export class ProjectsRepository {
     const query = `
       SELECT * FROM projects 
       WHERE is_featured = true
-      ORDER BY created_at DESC
     `;
 
     const result = await this.pool.query<ProjectEntity>(query);
