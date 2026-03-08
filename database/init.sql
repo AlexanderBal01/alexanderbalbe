@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS work_experience (
     start_date DATE NOT NULL,
     end_date DATE,
     skills TEXT[],
-    logo_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -25,7 +24,7 @@ CREATE TABLE IF NOT EXISTS projects (
     id SERIAL PRIMARY KEY,
     title VARCHAR(150) NOT NULL,
     slug VARCHAR(150) UNIQUE NOT NULL,
-    short_description VARCHAR(255),
+    short_description TEXT,
     content TEXT,
     image_url VARCHAR(255),
     github_url VARCHAR(255),
