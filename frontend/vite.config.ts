@@ -26,6 +26,10 @@ const config = defineConfig({
       usePolling: true,
       interval: 100, // Check every 100ms
     },
+    hmr: {
+      overlay: false,
+    },
+    allowedHosts: ["www.alexanderbal.be", "alexanderbal.be"], // Allow all hosts
   },
 });
 

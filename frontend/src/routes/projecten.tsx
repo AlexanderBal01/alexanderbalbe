@@ -11,18 +11,18 @@ function Projecten() {
     <div className="flex grow flex-col gap-6">
       <section className="mx-auto max-w-7xl w-full relative overflow-hidden px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-          <div className="space-y-4">
-            <h2 className="text-4xl font-black text-obsidian tracking-tight">
+          <div className="space-y-4 w-full">
+            <h2 className="text-4xl lg:text-5xl font-black text-obsidian flex justify-center">
               Mijn projecten
             </h2>
-            <p className="text-obsidian max-w-xl">
+            <p className="text-obsidian max-w-7xl w-full text-center">
               Hier vindt je alle projecten terug die ik al gerealiseerd heb.
             </p>
           </div>
         </div>
-        <div className="grid md:grid-cols-2 md:gap-4 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 md:gap-4 lg:grid-cols-3 gap-8 justify-center items-center w-full">
           {data.map((project) => (
-            <ProjectCard project={project} />
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </section>

@@ -15,7 +15,6 @@ export const Route = createFileRoute("/")({ component: App });
 
 function App() {
   const { data } = useFeaturedProjects();
-  console.log(data);
 
   return (
     <div className="flex grow flex-col gap-18 mb-2">
@@ -195,7 +194,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl w-full relative overflow-hidden px-6">
+      <section className="mx-auto lg:max-w-7xl w-full relative overflow-hidden px-6 sm:max-w-5xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div className="space-y-4">
             <h2 className="text-4xl font-black text-obsidian tracking-tight">
@@ -218,7 +217,7 @@ function App() {
         </div>
         <div className="grid md:grid-cols-2 md:gap-4 lg:grid-cols-3 gap-8">
           {data.map((project) => (
-            <ProjectCard project={project} />
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </section>

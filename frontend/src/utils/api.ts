@@ -1,12 +1,12 @@
 export const getApiUrl = () => {
   // Draaien we op de server (in Docker)?
-  if (import.meta.env.SSR) {
-    // Gebruik de interne Docker naam 'api' en poort 3000
-    // (Zorg dat SERVER_API_URL in je docker-compose staat)
+  if (typeof window === "undefined") {
+    // We zitten op de server (SSR) binnen Docker.
+    // Gebruik de interne Docker-naam van de container.
     return process.env.SERVER_API_URL || "http://api:3000";
   }
 
-  // Draaien we in de browser?
-  // Gebruik de publieke URL (localhost:3001)
-  return import.meta.env.VITE_API_URL || "http://localhost:3001";
+  // We zitten in de browser van de bezoeker.
+  // Gebruik de publieke URL die via Cloudflare bereikbaar is.
+  return import.meta.env.VITE_API_URL || "https://api.alexanderbal.be";
 };
