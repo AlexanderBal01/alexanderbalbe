@@ -1,4 +1,12 @@
 services:
+  image_server:
+    image: nginx:alpine
+    container_name: image_server
+    ports:
+      - "9000:80"
+    volumes:
+      - ./images:/usr/share/nginx/html:ro
+    restart: always
   # ------------------------------------------------------------
   # 1. DATABASE (PostgreSQL 16 LTS)
   # ------------------------------------------------------------
@@ -7,15 +15,15 @@ services:
     container_name: alexanderbalbe_db
     restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: alexanderbalbe_db
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     # Healthcheck is cruciaal voor de backup-container
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U user -d alexanderbalbe_db"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -34,9 +42,9 @@ services:
         condition: service_healthy
     environment:
       - POSTGRES_HOST=db
-      - POSTGRES_DB=alexanderbalbe_db
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
       - SCHEDULE=@daily # Elke nacht om 00:00
       - BACKUP_KEEP_DAYS=7 # Bewaar backups 7 dagen
 
@@ -60,9 +68,9 @@ services:
         condition: service_healthy
     environment:
       # Interne Docker netwerk URL voor DB connectie
-      - DATABASE_URL=postgresql://user:password@db:5432/alexanderbalbe_db
+      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
       # CORS setup: Frontend draait op poort 3000
-      - FRONTEND_URL=http://192.168.1.25:3000
+      - FRONTEND_URL=${FRONTEND_URL}
 
   # ------------------------------------------------------------
   # 4. FRONTEND (TanStack Start - Node 24 LTS)
@@ -84,7 +92,7 @@ services:
       - api
     environment:
       # Browser (Client) gaat naar localhost:3001
-      - VITE_API_URL=http://192.168.1.25:3001
+      - VITE_API_URL=${PUBLIC_API_URL}
       # SSR (Server) gaat direct naar de container 'api' op poort 3000
       # Dit is nodig omdat de server 'localhost' niet kent als jouw pc.
       - SERVER_API_URL=http://api:3000
